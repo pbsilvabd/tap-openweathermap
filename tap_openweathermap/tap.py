@@ -6,13 +6,11 @@ from singer_sdk import Tap, Stream
 from singer_sdk import typing as th  # JSON schema typing helpers
 
 from tap_openweathermap.streams import (
-    CurrentWeatherStream,
-    ForecastWeatherStream,
+    CurrentWeatherStream
 )
 
 STREAM_TYPES = [
-    CurrentWeatherStream,
-    ForecastWeatherStream,
+    CurrentWeatherStream
 ]
 
 
@@ -46,6 +44,18 @@ class TapOpenWeatherMap(Tap):
             required=True,
             description="Lattitude of city to get forecast for",
         ),
+        th.Property(
+            "units",
+            th.StringType,
+            required=False,
+            description="Units of measurement: standard, metric, imperial",
+        ),
+        th.Property(
+            "lang",
+            th.StringType,
+            required=False,
+            description="Language code for weather description (e.g. pt_br, en, es)",
+        )
     ).to_dict()
 
     def discover_streams(self) -> List[Stream]:
