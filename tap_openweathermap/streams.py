@@ -33,6 +33,12 @@ class _CurrentWeatherStream(_SyncedAtStream):
         params["q"] = self.config["current_weather_city_name"]
         params["appid"] = self.config["api_key"]
 
+        # Adiciona as configurações se estiverem presentes
+        if "units" in self.config:
+            params["units"] = self.config["units"]
+        if "lang" in self.config:
+            params["lang"] = self.config["lang"]
+
         return params
 
 
@@ -46,6 +52,12 @@ class _ForcastWeatherStream(_SyncedAtStream):
         params["lat"] = self.config["forecast_weather_lattitude"]
         params["lon"] = self.config["forecast_weather_longitude"]
         params["appid"] = self.config["api_key"]
+
+        # Adiciona as configurações se estiverem presentes
+        if "units" in self.config:
+            params["units"] = self.config["units"]
+        if "lang" in self.config:
+            params["lang"] = self.config["lang"]
 
         return params
 
